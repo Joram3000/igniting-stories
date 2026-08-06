@@ -8,7 +8,7 @@ export default function Footer() {
       <div className={styles.inner}>
         <Image src="/images/logo-orange.png" alt="Igniting Stories" width={48} height={48} />
         <span className={styles.copy}>
-          &copy; {new Date().getFullYear()} Igniting Stories &middot; Verhalen die aansteken
+          &copy; 2026 Igniting Stories &middot; Verhalen die aansteken
         </span>
       </div>
     </footer>

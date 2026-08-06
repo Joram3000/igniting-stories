@@ -78,6 +78,33 @@
 }
 
 // Angela intro
+.angelaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 64px;
+  align-items: center;
+  grid-template-areas: 'kop foto' 'tekst foto';
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+    align-items: stretch;
+    grid-template-areas: 'kop' 'foto' 'tekst';
+  }
+}
+
+.angelaKop {
+  grid-area: kop;
+}
+
+.angelaFoto {
+  grid-area: foto;
+}
+
+.angelaTekst {
+  grid-area: tekst;
+}
+
 .subtitel {
   color: $groen;
   font-size: 1.25rem;
@@ -95,13 +122,25 @@
 }
 
 .kaderCreme {
-  @include kader($creme);
+  @include kader($oranje);
 }
 
 // What I do
 .bandGroen {
   background: $groen;
   color: $creme;
+
+  @include mobile {
+    .tweeKolom {
+      > div:first-child {
+        order: 2;
+      }
+
+      > div:last-child {
+        order: 1;
+      }
+    }
+  }
 }
 
 .kopPaars {

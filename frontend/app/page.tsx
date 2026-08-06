@@ -76,8 +76,8 @@ export default async function Page() {
 
       {/* Angela */}
       <section className={styles.section}>
-        <div className={`container ${styles.tweeKolom}`}>
-          <div>
+        <div className={`container ${styles.angelaGrid}`}>
+          <div className={styles.angelaKop}>
             <svg
               className={styles.doodle}
               viewBox="0 0 260 60"
@@ -94,23 +94,25 @@ export default async function Page() {
             </svg>
             <h2>Angela Poll</h2>
             <p className={styles.subtitel}>Verhalenvanger</p>
-            <p className={styles.tekst}>
-              Met mijn pen, camera en creatieve blik help ik mensen en organisaties verhalen te
-              vertellen die inspireren. Niet door ze mooier te maken dan ze zijn, maar door te
-              laten zien wat er al <em>&iacute;s</em>. Verhalen, visies en acties van degenen die
-              een positieve invloed willen maken op hun <em>directe</em> omgeving.
-            </p>
-            <Link href="/over-mij" className={styles.knopOutline}>
-              Meer over mij
-            </Link>
           </div>
-          <div className={styles.kaderCreme}>
+          <div className={`${styles.kaderCreme} ${styles.angelaFoto}`}>
             <NextImage
               src="/images/portret-zon.jpg"
               alt="Angela Poll in het zonlicht"
               width={1280}
               height={1600}
             />
+          </div>
+          <div className={styles.angelaTekst}>
+            <p className={styles.tekst}>
+              Met mijn pen, camera en creatieve blik help ik mensen en organisaties verhalen te
+              vertellen die inspireren. Niet door ze mooier te maken dan ze zijn, maar door te laten
+              zien wat er al <em>&iacute;s</em>. Verhalen, visies en acties van degenen die een
+              positieve invloed willen maken op hun <em>directe</em> omgeving.
+            </p>
+            <Link href="/over-mij" className={styles.knopOutline}>
+              Meer over mij
+            </Link>
           </div>
         </div>
       </section>
@@ -175,8 +177,8 @@ export default async function Page() {
           <div className={styles.cta}>
             <h2>Ken jij iemand met een vonk?</h2>
             <p className={styles.ctaTekst}>
-              Iemand die zich inzet om het leven een beetje mooier te maken en wiens verhaal
-              verteld mag worden? Tip me. Wie weet zit diegene binnenkort tegenover mij.
+              Iemand die zich inzet om het leven een beetje mooier te maken en wiens verhaal verteld
+              mag worden? Tip me. Wie weet zit diegene binnenkort tegenover mij.
             </p>
             <Link href="/contact" className={styles.knopOranje}>
               Tip een verhaal

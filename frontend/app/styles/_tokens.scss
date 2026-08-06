@@ -7,10 +7,11 @@ $creme-zacht: rgba(254, 242, 234, 0.75);
 $creme-zwak: rgba(254, 242, 234, 0.6);
 $creme-lijn: rgba(254, 242, 234, 0.15);
 
-$font-serif:
-  var(--font-fraunces), Georgia, serif;
+$font-serif: var(--font-fraunces), Georgia, serif;
 $font-sans:
-  var(--font-dm-sans), -apple-system, sans-serif;
+  var(--font-dm-sans),
+  -apple-system,
+  sans-serif;
 
 $container-max: 1160px;
 
@@ -26,17 +27,16 @@ $container-max: 1160px;
   }
 }
 
-@mixin kader($bg: $creme) {
+@mixin kader($bg: $creme, $x: -12px, $y: 12px) {
   position: relative;
   border-radius: 20px;
-  padding: 10px;
-  background: $bg;
+  box-shadow: $x $y 0 0 $bg;
 
   img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 12px;
+    border-radius: 20px;
   }
 }
 
@@ -89,7 +89,7 @@ $container-max: 1160px;
 
   &:hover {
     filter: brightness(1.1);
-    transform: translateY(-2px);
+    transform: scale(1.05);
   }
 }
 

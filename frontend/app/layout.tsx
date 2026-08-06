@@ -3,6 +3,7 @@ import './globals.scss'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import type {Metadata} from 'next'
 import {Fraunces, DM_Sans} from 'next/font/google'
+import localFont from 'next/font/local'
 import {draftMode} from 'next/headers'
 import {toPlainText} from 'next-sanity'
 import {VisualEditing} from 'next-sanity/visual-editing'
@@ -67,11 +68,17 @@ const dmSans = DM_Sans({
   display: 'swap',
 })
 
+const tanNimbus = localFont({
+  src: './fonts/TAN-NIMBUS.woff2',
+  variable: '--font-tan-nimbus',
+  display: 'swap',
+})
+
 export default async function RootLayout({children}: LayoutProps<'/'>) {
   const {isEnabled: isDraftMode} = await draftMode()
 
   return (
-    <html lang="nl" className={`${fraunces.variable} ${dmSans.variable}`}>
+    <html lang="nl" className={`${fraunces.variable} ${dmSans.variable} ${tanNimbus.variable}`}>
       <body>
         <section className={styles.shell}>
           {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}

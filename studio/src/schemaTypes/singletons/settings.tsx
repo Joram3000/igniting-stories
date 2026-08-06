@@ -116,6 +116,13 @@ export const settings = defineType({
       ],
     }),
     defineField({
+      name: 'footerTagline',
+      description: 'Getoond in de footer, achter het jaartal en de bedrijfsnaam.',
+      title: 'Footer tagline',
+      type: 'string',
+      initialValue: 'Verhalen die aansteken',
+    }),
+    defineField({
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'image',

@@ -127,6 +127,77 @@ export type Button = {
   link?: Link
 }
 
+export type VerhalenPage = {
+  _id: string
+  _type: 'verhalenPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  intro?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type ContactPage = {
+  _id: string
+  _type: 'contactPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  body?: string
+  email: string
+  mailSubject?: string
+  mailButtonText?: string
+  directText?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type OverMijPage = {
+  _id: string
+  _type: 'overMijPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  body: string
+  ctaHeading?: string
+  ctaText?: string
+  ctaButtonText?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type HomePage = {
+  _id: string
+  _type: 'homePage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heroHeading: string
+  heroKicker?: string
+  heroPrimaryButtonText?: string
+  heroSecondaryButtonText?: string
+  angelaHeading?: string
+  angelaSubheading?: string
+  angelaText?: string
+  angelaButtonText?: string
+  watIkDoeHeading?: string
+  watIkDoeSubheading?: string
+  watIkDoeItems?: Array<{
+    title: string
+    description: string
+    _type: 'watIkDoeItem'
+    _key: string
+  }>
+  storiesHeading?: string
+  ctaHeading?: string
+  ctaText?: string
+  ctaButtonText?: string
+}
+
 export type Settings = {
   _id: string
   _type: 'settings'
@@ -156,6 +227,7 @@ export type Settings = {
     _type: 'block'
     _key: string
   }>
+  footerTagline?: string
   ogImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -500,6 +572,10 @@ export type AllSanitySchemaTypes =
   | BlockContentTextOnly
   | BlockContent
   | Button
+  | VerhalenPage
+  | ContactPage
+  | OverMijPage
+  | HomePage
   | Settings
   | SanityImageCrop
   | SanityImageHotspot

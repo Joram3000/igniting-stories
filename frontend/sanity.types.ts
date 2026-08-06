@@ -127,6 +127,77 @@ export type Button = {
   link?: Link
 }
 
+export type VerhalenPage = {
+  _id: string
+  _type: 'verhalenPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  intro?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type ContactPage = {
+  _id: string
+  _type: 'contactPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  body?: string
+  email: string
+  mailSubject?: string
+  mailButtonText?: string
+  directText?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type OverMijPage = {
+  _id: string
+  _type: 'overMijPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  body: string
+  ctaHeading?: string
+  ctaText?: string
+  ctaButtonText?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type HomePage = {
+  _id: string
+  _type: 'homePage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heroHeading: string
+  heroKicker?: string
+  heroPrimaryButtonText?: string
+  heroSecondaryButtonText?: string
+  angelaHeading?: string
+  angelaSubheading?: string
+  angelaText?: string
+  angelaButtonText?: string
+  watIkDoeHeading?: string
+  watIkDoeSubheading?: string
+  watIkDoeItems?: Array<{
+    title: string
+    description: string
+    _type: 'watIkDoeItem'
+    _key: string
+  }>
+  storiesHeading?: string
+  ctaHeading?: string
+  ctaText?: string
+  ctaButtonText?: string
+}
+
 export type Settings = {
   _id: string
   _type: 'settings'
@@ -156,6 +227,7 @@ export type Settings = {
     _type: 'block'
     _key: string
   }>
+  footerTagline?: string
   ogImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -500,6 +572,10 @@ export type AllSanitySchemaTypes =
   | BlockContentTextOnly
   | BlockContent
   | Button
+  | VerhalenPage
+  | ContactPage
+  | OverMijPage
+  | HomePage
   | Settings
   | SanityImageCrop
   | SanityImageHotspot
@@ -562,6 +638,7 @@ export type SettingsQueryResult = {
     _type: 'block'
     _key: string
   }>
+  footerTagline?: string
   ogImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -571,6 +648,89 @@ export type SettingsQueryResult = {
     metadataBase?: string
     _type: 'image'
   }
+} | null
+
+// Source: sanity/lib/queries.ts
+// Variable: homePageQuery
+// Query: *[_type == "homePage"][0]
+export type HomePageQueryResult = {
+  _id: string
+  _type: 'homePage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heroHeading: string
+  heroKicker?: string
+  heroPrimaryButtonText?: string
+  heroSecondaryButtonText?: string
+  angelaHeading?: string
+  angelaSubheading?: string
+  angelaText?: string
+  angelaButtonText?: string
+  watIkDoeHeading?: string
+  watIkDoeSubheading?: string
+  watIkDoeItems?: Array<{
+    title: string
+    description: string
+    _type: 'watIkDoeItem'
+    _key: string
+  }>
+  storiesHeading?: string
+  ctaHeading?: string
+  ctaText?: string
+  ctaButtonText?: string
+} | null
+
+// Source: sanity/lib/queries.ts
+// Variable: overMijPageQuery
+// Query: *[_type == "overMijPage"][0]
+export type OverMijPageQueryResult = {
+  _id: string
+  _type: 'overMijPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  body: string
+  ctaHeading?: string
+  ctaText?: string
+  ctaButtonText?: string
+  metaTitle?: string
+  metaDescription?: string
+} | null
+
+// Source: sanity/lib/queries.ts
+// Variable: contactPageQuery
+// Query: *[_type == "contactPage"][0]
+export type ContactPageQueryResult = {
+  _id: string
+  _type: 'contactPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  body?: string
+  email: string
+  mailSubject?: string
+  mailButtonText?: string
+  directText?: string
+  metaTitle?: string
+  metaDescription?: string
+} | null
+
+// Source: sanity/lib/queries.ts
+// Variable: verhalenPageQuery
+// Query: *[_type == "verhalenPage"][0]
+export type VerhalenPageQueryResult = {
+  _id: string
+  _type: 'verhalenPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  intro?: string
+  metaTitle?: string
+  metaDescription?: string
 } | null
 
 // Source: sanity/lib/queries.ts
@@ -818,6 +978,10 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
+    '*[_type == "homePage"][0]': HomePageQueryResult
+    '*[_type == "overMijPage"][0]': OverMijPageQueryResult
+    '*[_type == "contactPage"][0]': ContactPageQueryResult
+    '*[_type == "verhalenPage"][0]': VerhalenPageQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult

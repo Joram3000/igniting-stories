@@ -2,6 +2,14 @@ import {defineQuery} from 'next-sanity'
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
+export const homePageQuery = defineQuery(`*[_type == "homePage"][0]`)
+
+export const overMijPageQuery = defineQuery(`*[_type == "overMijPage"][0]`)
+
+export const contactPageQuery = defineQuery(`*[_type == "contactPage"][0]`)
+
+export const verhalenPageQuery = defineQuery(`*[_type == "verhalenPage"][0]`)
+
 const postFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),

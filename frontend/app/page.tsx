@@ -1,74 +1,189 @@
-import {Suspense} from 'react'
 import Link from 'next/link'
-import {PortableText} from '@portabletext/react'
+import NextImage from 'next/image'
 
-import {AllPosts} from '@/app/components/Posts'
-import {settingsQuery} from '@/sanity/lib/queries'
+import styles from '@/app/page.module.scss'
+import VerhaalCard from '@/app/components/VerhaalCard'
+import Onboarding from '@/app/components/Onboarding'
 import {sanityFetch} from '@/sanity/lib/live'
-import {dataAttr} from '@/sanity/lib/utils'
+import {allPostsQuery} from '@/sanity/lib/queries'
+import {AllPostsQueryResult} from '@/sanity.types'
 
 export default async function Page() {
-  const {data: settings} = await sanityFetch({
-    query: settingsQuery,
-  })
+  const {data: posts} = await sanityFetch({query: allPostsQuery})
+  const recentPosts = (posts as AllPostsQueryResult) ?? []
+  const featuredPosts = recentPosts.slice(0, 3)
 
   return (
     <>
-      <div className="relative">
-        <div className="relative bg-[url(/images/tile-1-black.png)] bg-size-[5px]">
-          <div className="bg-gradient-to-b from-white w-full h-full absolute top-0"></div>
-          <div className="container">
-            <div className="relative min-h-[40vh] mx-auto max-w-2xl pt-10 xl:pt-20 pb-30 space-y-6 lg:max-w-4xl lg:px-12 flex flex-col items-center justify-center">
-              <div className="flex flex-col gap-4 items-center">
-                <div className="text-md leading-6 prose uppercase py-1 px-3 bg-white font-mono italic">
-                  A starter template for
-                </div>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-black">
-                  <Link
-                    className="underline decoration-brand hover:text-brand underline-offset-8 hover:underline-offset-4 transition-all ease-out"
-                    href="https://sanity.io/"
-                  >
-                    Sanity
-                  </Link>
-                  +
-                  <Link
-                    className="underline decoration-black text-framework underline-offset-8 hover:underline-offset-4 transition-all ease-out"
-                    href="https://nextjs.org/"
-                  >
-                    Next.js
-                  </Link>
-                </h1>
-              </div>
+      {/* Hero */}
+      <section className={`${styles.section} ${styles.hero}`}>
+        <div className={`container ${styles.tweeKolom}`}>
+          <div>
+            <svg
+              className={styles.doodle}
+              viewBox="0 0 260 60"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 40 C 50 5, 90 5, 120 30 S 170 55, 195 35 S 230 10, 258 22"
+                stroke="#FC9F57"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            </svg>
+            <p className={styles.kicker}>
+              Verhalen die je aansteken
+              <br />
+              met positieve energie
+            </p>
+            <h1 className={styles.titel}>
+              Igniting
+              <br />
+              Stories
+            </h1>
+            <div className={styles.knoppen}>
+              <Link href="/verhalen" className={styles.knopOranje}>
+                Bekijk verhalen
+              </Link>
+              <Link href="/contact" className={styles.knopGroen}>
+                Aanmelden
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.heroCollage}>
+            <div className={styles.fotoGroot}>
+              <NextImage
+                src="/images/vrouw.jpg"
+                alt="Portret van een lachende vrouw"
+                width={1200}
+                height={1500}
+              />
+            </div>
+            <div className={styles.fotoKlein}>
+              <NextImage
+                src="/images/gitarist.jpg"
+                alt="Gitarist tijdens een optreden"
+                width={468}
+                height={268}
+              />
             </div>
           </div>
         </div>
-        <div className=" flex flex-col items-center">
-          <div className="container relative mx-auto max-w-2xl pb-20 pt-10 space-y-6 lg:max-w-4xl lg:px-12 flex flex-col items-center">
-            <div className="prose sm:prose-lg md:prose-xl xl:prose-2xl text-gray-700 prose-a:text-gray-700 font-light text-center">
-              {settings?.description && (
-                <div
-                  data-sanity={dataAttr({
-                    id: settings._id,
-                    type: 'settings',
-                    path: 'description',
-                  }).toString()}
-                >
-                  <PortableText value={settings.description} />
+      </section>
+
+      {/* Angela */}
+      <section className={styles.section}>
+        <div className={`container ${styles.tweeKolom}`}>
+          <div>
+            <svg
+              className={styles.doodle}
+              viewBox="0 0 260 60"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 30 C 30 60, 60 55, 80 30 S 110 2, 135 22 S 175 55, 205 40 S 245 15, 258 25"
+                stroke="#368F8B"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            </svg>
+            <h2>Angela Poll</h2>
+            <p className={styles.subtitel}>Verhalenvanger</p>
+            <p className={styles.tekst}>
+              Met mijn pen, camera en creatieve blik help ik mensen en organisaties verhalen te
+              vertellen die inspireren. Niet door ze mooier te maken dan ze zijn, maar door te
+              laten zien wat er al <em>&iacute;s</em>. Verhalen, visies en acties van degenen die
+              een positieve invloed willen maken op hun <em>directe</em> omgeving.
+            </p>
+            <Link href="/over-mij" className={styles.knopOutline}>
+              Meer over mij
+            </Link>
+          </div>
+          <div className={styles.kaderCreme}>
+            <NextImage
+              src="/images/portret-zon.jpg"
+              alt="Angela Poll in het zonlicht"
+              width={1280}
+              height={1600}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* What I do */}
+      <section className={`${styles.section} ${styles.bandGroen}`}>
+        <div className={`container ${styles.tweeKolom}`}>
+          <div className={styles.kaderCreme}>
+            <NextImage
+              src="/images/angela-camera.jpg"
+              alt="Angela met camera in een heideveld"
+              width={1076}
+              height={1434}
+            />
+          </div>
+          <div>
+            <h2 className={styles.kopPaars}>What I do</h2>
+            <div className={styles.widGrid}>
+              {[
+                'Inspirerende verhalen vangen in video, copy en fotografie',
+                'Het uitwerken van een contentstrategie om van identiteit naar impact te groeien',
+                'Creatieve samenwerkingen met mensen en organisaties',
+                'Een identiteit creatief en concreet vormgeven in kleur, beeld, tekst en webdesign (UX & UI)',
+              ].map((text, i) => (
+                <div key={text} className={styles.widItem}>
+                  <span className={styles.widNr}>{i + 1}.</span>
+                  <p>{text}</p>
                 </div>
-              )}
+              ))}
             </div>
           </div>
         </div>
-      </div>
-      <div className="border-t border-gray-100 bg-gray-50">
+      </section>
+
+      {/* Verhalen */}
+      <section className={styles.section}>
         <div className="container">
-          <aside className="py-12 sm:py-20">
-            <Suspense>
-              <AllPosts />
-            </Suspense>
-          </aside>
+          <div className={styles.sectieKop}>
+            <h2>Verhalen die aansteken</h2>
+            <p>
+              Elke dag hoor je wel iets over wat er niet goed gaat in de wereld. Deprimerend.
+              Igniting Stories focust op verhalen die een vuurtje aanwakkeren. Mensen die zich op
+              een inspirerende manier inzetten om het leven mooier te maken. Verhalen die een
+              glimlach ontvlambaar maken.
+            </p>
+          </div>
+          {featuredPosts.length > 0 ? (
+            <div className="verhalen-grid">
+              {featuredPosts.map((post) => (
+                <VerhaalCard key={post._id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <Onboarding />
+          )}
         </div>
-      </div>
+      </section>
+
+      {/* CTA */}
+      <section className={styles.section}>
+        <div className="container">
+          <div className={styles.cta}>
+            <h2>Ken jij iemand met een vonk?</h2>
+            <p className={styles.ctaTekst}>
+              Iemand die zich inzet om het leven een beetje mooier te maken en wiens verhaal
+              verteld mag worden? Tip me. Wie weet zit diegene binnenkort tegenover mij.
+            </p>
+            <Link href="/contact" className={styles.knopOranje}>
+              Tip een verhaal
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

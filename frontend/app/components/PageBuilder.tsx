@@ -3,6 +3,7 @@
 import {SanityDocument} from 'next-sanity'
 import {useOptimistic} from 'next-sanity/hooks'
 
+import styles from '@/app/components/PageBuilder.module.scss'
 import BlockRenderer from '@/app/components/BlockRenderer'
 import {GetPageQueryResult} from '@/sanity.types'
 import {dataAttr} from '@/sanity/lib/utils'
@@ -60,7 +61,7 @@ function RenderEmptyState({page}: {page: GetPageQueryResult}) {
 
   return (
     <div
-      className="container mt-10"
+      className={`container ${styles.empty}`}
       data-sanity={dataAttr({
         id: page._id,
         type: 'page',
@@ -68,8 +69,8 @@ function RenderEmptyState({page}: {page: GetPageQueryResult}) {
       }).toString()}
     >
       <div className="prose">
-        <h2 className="">This page has no content!</h2>
-        <p className="">Open the page in Sanity Studio to add content.</p>
+        <h2>This page has no content!</h2>
+        <p>Open the page in Sanity Studio to add content.</p>
       </div>
     </div>
   )

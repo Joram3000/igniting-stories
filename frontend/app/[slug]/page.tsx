@@ -1,6 +1,7 @@
 import type {Metadata} from 'next'
 import Head from 'next/head'
 
+import styles from '@/app/[slug]/page.module.scss'
 import PageBuilderPage from '@/app/components/PageBuilder'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery, pagesSlugs} from '@/sanity/lib/queries'
@@ -46,26 +47,22 @@ export default async function Page(props: PageProps<'/[slug]'>) {
 
   if (!page?._id) {
     return (
-      <div className="py-40">
+      <div className={styles.onboardingWrap}>
         <PageOnboarding />
       </div>
     )
   }
 
   return (
-    <div className="my-12 lg:my-24">
+    <div className={styles.page}>
       <Head>
         <title>{page.heading}</title>
       </Head>
-      <div className="">
+      <div className={styles.head}>
         <div className="container">
-          <div className="pb-6 border-b border-gray-100">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl text-gray-900 sm:text-5xl lg:text-7xl">{page.heading}</h1>
-              <p className="mt-4 text-base lg:text-lg leading-relaxed text-gray-600 uppercase font-light">
-                {page.subheading}
-              </p>
-            </div>
+          <div className={styles.headInner}>
+            <h1>{page.heading}</h1>
+            <p className={styles.subheading}>{page.subheading}</p>
           </div>
         </div>
       </div>

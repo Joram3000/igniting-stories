@@ -1,0 +1,31 @@
+@use '../styles/tokens' as *;
+
+.section {
+  @include section;
+}
+
+.tweeKolom {
+  @include twee-kolom;
+}
+
+.tekst {
+  margin-top: 1.5rem;
+}
+
+.mailKnop {
+  margin-top: 1rem;
+}
+
+.knopOutline {
+  @include knop;
+}
+
+.direct {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: $creme-zacht;
+}
+
+.kaderGroen {
+  @include kader($groen);
+}

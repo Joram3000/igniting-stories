@@ -1,0 +1,35 @@
+@use '../styles/tokens' as *;
+
+.onboardingWrap {
+  padding: 160px 0;
+}
+
+.page {
+  margin: 48px 0;
+
+  @media (min-width: 1024px) {
+    margin: 96px 0;
+  }
+}
+
+.head {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $creme-lijn;
+}
+
+.headInner {
+  max-width: 48rem;
+}
+
+.subheading {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: $creme-zacht;
+
+  @media (min-width: 1024px) {
+    font-size: 1.125rem;
+  }
+}

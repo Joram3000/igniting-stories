@@ -1,0 +1,104 @@
+@use './styles/tokens' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  background: $paars;
+  color: $creme;
+  font-family: $font-sans;
+  font-weight: 400;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-serif;
+  font-weight: 500;
+  color: $oranje;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: $oranje;
+}
+
+.container {
+  @include container;
+}
+
+.verhalen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+// Typography for Sanity portable text / rich content
+.prose {
+  max-width: 65ch;
+
+  p {
+    margin: 1em 0;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  ul,
+  ol {
+    margin: 1em 0;
+    padding-left: 1.5em;
+  }
+
+  img {
+    border-radius: 8px;
+  }
+
+  blockquote {
+    border-left: 3px solid $oranje;
+    padding-left: 1em;
+    font-style: italic;
+    color: $creme-zacht;
+  }
+}

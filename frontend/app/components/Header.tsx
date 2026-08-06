@@ -1,46 +1,42 @@
-import Link from 'next/link'
-import {settingsQuery} from '@/sanity/lib/queries'
-import {sanityFetch} from '@/sanity/lib/live'
+'use client'
 
-export default async function Header() {
-  const {data: settings} = await sanityFetch({
-    query: settingsQuery,
-  })
+import Image from 'next/image'
+import Link from 'next/link'
+import {usePathname} from 'next/navigation'
+
+import styles from '@/app/components/Header.module.scss'
+
+const links = [
+  {href: '/', label: 'Home'},
+  {href: '/verhalen', label: 'Verhalen'},
+  {href: '/over-mij', label: 'Over mij'},
+  {href: '/contact', label: 'Contact'},
+]
+
+export default function Header() {
+  const pathname = usePathname()
 
   return (
-    <header className="fixed z-50 h-24 inset-0 bg-white/80 flex items-center backdrop-blur-lg">
-      <div className="container py-6 px-2 sm:px-6">
-        <div className="flex items-center justify-between gap-5">
-          <Link className="flex items-center gap-2" href="/">
-            Home
-          </Link>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        <Link className={styles.logo} href="/">
+          <Image src="/images/logo-wide.png" alt="Igniting Stories" width={224} height={64} priority />
+        </Link>
 
-          <nav>
-            <ul
-              role="list"
-              className="flex items-center gap-4 md:gap-6 leading-5 text-xs sm:text-base tracking-tight font-mono"
-            >
-              <li>
-                <Link href="/verhalen" className="hover:underline">
-                  Verhalen
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:underline">
-                  Over mij
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:underline">
-                  Contact
-                </Link>
-              </li>
+        <ul className={styles.links}>
+          {links.map(({href, label}) => {
+            const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href)
 
-              <li className="sm:before:w-[1px] sm:before:bg-gray-200 before:block flex sm:gap-4 md:gap-6"></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+            return (
+              <li key={href}>
+                <Link href={href} className={isActive ? styles.linkActief : styles.link}>
+                  {label}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
     </header>
   )
 }

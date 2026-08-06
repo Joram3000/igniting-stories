@@ -1,0 +1,9 @@
+@use '../styles/tokens' as *;
+
+.section {
+  @include section;
+}
+
+.sectieKop {
+  @include sectie-kop;
+}

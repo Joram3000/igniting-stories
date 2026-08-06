@@ -1,0 +1,45 @@
+@use '../styles/tokens' as *;
+
+.section {
+  @include section;
+}
+
+.tweeKolom {
+  @include twee-kolom;
+}
+
+.subtitel {
+  color: $groen;
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.tekst {
+  margin-top: 1.5rem;
+}
+
+.kaderOranje {
+  @include kader($oranje);
+}
+
+.ctaSection {
+  padding-bottom: 72px;
+
+  @include mobile {
+    padding-bottom: 48px;
+  }
+}
+
+.cta {
+  @include cta-blok;
+}
+
+.ctaTekst {
+  max-width: 52ch;
+  margin: 1rem auto 2rem;
+  color: $creme-zacht;
+}
+
+.knopVol {
+  @include knop-vol;
+}

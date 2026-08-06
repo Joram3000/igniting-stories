@@ -9,6 +9,7 @@
  */
 
 import {PortableText, type PortableTextComponents, type PortableTextBlock} from 'next-sanity'
+import styles from '@/app/components/PortableText.module.scss'
 import ResolvedLink from '@/app/components/ResolvedLink'
 import Image from '@/app/components/SanityImage'
 
@@ -27,14 +28,14 @@ export default function CustomPortableText({
         }
 
         return (
-          <figure className="my-8">
+          <figure className={styles.figure}>
             <Image
               id={value.asset._ref}
               alt={value.alt || ''}
               width={672}
               crop={value.crop}
               mode="cover"
-              className="rounded-sm"
+              className={styles.figureImage}
             />
           </figure>
         )
@@ -43,15 +44,12 @@ export default function CustomPortableText({
     block: {
       h1: ({children, value}) => (
         // Add an anchor to the h1
-        <h1 className="group relative">
+        <h1 className={styles.headingGroup}>
           {children}
-          <a
-            href={`#${value?._key}`}
-            className="absolute left-0 top-0 bottom-0 -ml-6 flex items-center opacity-0 group-hover:opacity-100 transition-opacity"
-          >
+          <a href={`#${value?._key}`} className={styles.anchor}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className={styles.anchorIcon}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -69,15 +67,12 @@ export default function CustomPortableText({
       h2: ({children, value}) => {
         // Add an anchor to the h2
         return (
-          <h2 className="group relative">
+          <h2 className={styles.headingGroup}>
             {children}
-            <a
-              href={`#${value?._key}`}
-              className="absolute left-0 top-0 bottom-0 -ml-6 flex items-center opacity-0 group-hover:opacity-100 transition-opacity"
-            >
+            <a href={`#${value?._key}`} className={styles.anchor}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+                className={styles.anchorIcon}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -102,7 +97,7 @@ export default function CustomPortableText({
   }
 
   return (
-    <div className={`prose-a:text-brand prose dark:prose-invert ${className}`}>
+    <div className={`prose ${className ?? ''}`}>
       <PortableText components={components} value={value} />
     </div>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 
+import styles from '@/app/components/BlockRenderer.module.scss'
 import Cta from '@/app/components/Cta'
 import Info from '@/app/components/InfoSection'
 import {dataAttr} from '@/sanity/lib/utils'
@@ -49,7 +50,7 @@ export default function BlockRenderer({block, index, pageId, pageType}: BlockPro
   // Block doesn't exist yet
   return React.createElement(
     () => (
-      <div className="w-full bg-gray-100 text-center text-gray-500 p-20 rounded">
+      <div className={styles.missing}>
         A &ldquo;{block._type}&rdquo; block hasn&apos;t been created
       </div>
     ),

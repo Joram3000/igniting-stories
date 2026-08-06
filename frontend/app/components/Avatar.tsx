@@ -1,5 +1,6 @@
 import Image from '@/app/components/SanityImage'
 import DateComponent from '@/app/components/Date'
+import styles from '@/app/components/Avatar.module.scss'
 
 type Props = {
   person: {
@@ -20,13 +21,12 @@ export default function Avatar({person, date, small = false}: Props) {
   const {firstName, lastName, picture} = person
 
   return (
-    <div className="flex items-center font-mono">
+    <div className={styles.avatar}>
       {picture?.asset?._ref ? (
-        <div className={`${small ? 'h-6 w-6 mr-2' : 'h-9 w-9 mr-4'}`}>
+        <div className={small ? styles.pictureSmall : styles.picture}>
           <Image
             id={picture.asset._ref}
             alt={picture?.alt || ''}
-            className="h-full rounded-full"
             height={small ? 32 : 48}
             width={small ? 32 : 48}
             hotspot={picture.hotspot}
@@ -35,15 +35,15 @@ export default function Avatar({person, date, small = false}: Props) {
           />
         </div>
       ) : (
-        <div className="mr-1">By </div>
+        <div className={styles.byLine}>By </div>
       )}
-      <div className="flex flex-col">
+      <div className={styles.meta}>
         {firstName && lastName && (
-          <div className={`${small ? 'text-sm' : ''}`}>
+          <div className={small ? styles.nameSmall : styles.name}>
             {firstName} {lastName}
           </div>
         )}
-        <div className={`text-gray-500 ${small ? 'text-xs' : 'text-sm'}`}>
+        <div className={small ? styles.dateSmall : styles.date}>
           <DateComponent dateString={date} />
         </div>
       </div>

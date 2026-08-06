@@ -1,0 +1,76 @@
+@use '../styles/tokens' as *;
+
+.section {
+  position: relative;
+}
+
+.dark {
+  background: $paars-donker;
+  color: $creme;
+}
+
+.light {
+  background: $creme;
+  color: $paars;
+}
+
+.inner {
+  padding: 48px 0;
+}
+
+.grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.imageFirst {
+  @media (min-width: 1024px) {
+    grid-row-start: 1;
+    grid-column-start: 2;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.eyebrow {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+}
+
+.buttonRow {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  text-decoration: none;
+  background: $oranje;
+  color: $paars;
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.image {
+  border-radius: 8px;
+}

@@ -1,0 +1,10 @@
+@use '../styles/tokens' as *;
+
+.missing {
+  width: 100%;
+  padding: 5rem;
+  border-radius: 8px;
+  background: $paars-donker;
+  color: $creme-zwak;
+  text-align: center;
+}

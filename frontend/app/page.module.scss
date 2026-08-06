@@ -1,0 +1,161 @@
+@use './styles/tokens' as *;
+
+.section {
+  @include section;
+}
+
+.tweeKolom {
+  @include twee-kolom;
+}
+
+.doodle {
+  width: 200px;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+// Hero
+.hero {
+  padding-top: 48px;
+
+  @include mobile {
+    padding-top: 24px;
+  }
+}
+
+.kicker {
+  font-size: 1.1rem;
+  color: $creme;
+  margin-bottom: 0.75rem;
+}
+
+.titel {
+  font-family: $font-serif;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  letter-spacing: 0.01em;
+  color: $oranje;
+}
+
+.knoppen {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.knopOranje {
+  @include knop-pill($oranje, $paars);
+}
+
+.knopGroen {
+  @include knop-pill($groen, $creme);
+}
+
+.heroCollage {
+  position: relative;
+}
+
+.fotoGroot {
+  @include kader($oranje);
+  width: 82%;
+  z-index: 1;
+}
+
+.fotoKlein {
+  @include kader($groen);
+  position: absolute;
+  top: -6%;
+  right: 0;
+  width: 46%;
+  z-index: 2;
+}
+
+.fotoImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// Angela intro
+.subtitel {
+  color: $groen;
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.tekst {
+  margin-top: 1.5rem;
+  max-width: 52ch;
+}
+
+.knopOutline {
+  @include knop;
+  margin-top: 1.5rem;
+}
+
+.kaderCreme {
+  @include kader($creme);
+}
+
+// What I do
+.bandGroen {
+  background: $groen;
+  color: $creme;
+}
+
+.kopPaars {
+  color: $paars;
+}
+
+.widGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 40px;
+  margin-top: 2rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.widItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.widItem p {
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.widNr {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $creme;
+  color: $oranje;
+  font-family: $font-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Verhalen
+.sectieKop {
+  @include sectie-kop;
+}
+
+// CTA
+.cta {
+  @include cta-blok;
+}
+
+.ctaTekst {
+  max-width: 52ch;
+  margin: 1rem auto 2rem;
+  color: $creme-zacht;
+}

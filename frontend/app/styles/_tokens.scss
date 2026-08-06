@@ -1,0 +1,134 @@
+$paars: #2f2154;
+$paars-donker: #271b48;
+$oranje: #fc9f57;
+$groen: #368f8b;
+$creme: #fef2ea;
+$creme-zacht: rgba(254, 242, 234, 0.75);
+$creme-zwak: rgba(254, 242, 234, 0.6);
+$creme-lijn: rgba(254, 242, 234, 0.15);
+
+$font-serif:
+  var(--font-fraunces), Georgia, serif;
+$font-sans:
+  var(--font-dm-sans), -apple-system, sans-serif;
+
+$container-max: 1160px;
+
+@mixin container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@mixin mobile {
+  @media (max-width: 800px) {
+    @content;
+  }
+}
+
+@mixin kader($bg: $creme) {
+  position: relative;
+  border-radius: 20px;
+  padding: 10px;
+  background: $bg;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+}
+
+@mixin knop {
+  display: inline-block;
+  font-family: $font-serif;
+  font-size: 1.05rem;
+  color: $oranje;
+  text-decoration: none;
+  border: 1.5px solid $oranje;
+  border-radius: 10px;
+  padding: 12px 26px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $oranje;
+    color: $paars;
+  }
+}
+
+@mixin knop-vol {
+  @include knop;
+  background: $oranje;
+  color: $paars;
+
+  &:hover {
+    background: transparent;
+    color: $oranje;
+  }
+}
+
+@mixin knop-pill($bg, $color) {
+  display: inline-block;
+  font-family: $font-sans;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 32px;
+  background: $bg;
+  color: $color;
+  cursor: pointer;
+  transition:
+    filter 0.2s,
+    transform 0.2s;
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+}
+
+@mixin section {
+  padding: 72px 0;
+
+  @include mobile {
+    padding: 48px 0;
+  }
+}
+
+@mixin twee-kolom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@mixin sectie-kop {
+  max-width: 60ch;
+  margin-bottom: 3rem;
+
+  p {
+    color: $creme-zacht;
+  }
+}
+
+@mixin cta-blok {
+  background: $paars-donker;
+  border-radius: 24px;
+  padding: 64px 48px;
+  text-align: center;
+
+  @include mobile {
+    padding: 48px 24px;
+  }
+}

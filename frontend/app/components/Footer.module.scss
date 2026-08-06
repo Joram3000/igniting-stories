@@ -1,0 +1,21 @@
+@use '../styles/tokens' as *;
+
+.footer {
+  margin-top: 48px;
+  border-top: 1px solid $creme-lijn;
+  padding: 40px 0;
+}
+
+.inner {
+  @include container;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.copy {
+  font-size: 0.9rem;
+  color: $creme-zacht;
+}

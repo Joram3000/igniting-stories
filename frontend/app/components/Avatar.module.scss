@@ -1,0 +1,57 @@
+@use '../styles/tokens' as *;
+
+.avatar {
+  display: flex;
+  align-items: center;
+}
+
+.picture {
+  height: 36px;
+  width: 36px;
+  margin-right: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.pictureSmall {
+  composes: picture;
+  height: 24px;
+  width: 24px;
+  margin-right: 0.5rem;
+}
+
+.picture img,
+.pictureSmall img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.byLine {
+  margin-right: 0.25rem;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 1rem;
+}
+
+.nameSmall {
+  composes: name;
+  font-size: 0.875rem;
+}
+
+.date {
+  font-size: 0.875rem;
+  color: $creme-zwak;
+}
+
+.dateSmall {
+  composes: date;
+  font-size: 0.75rem;
+}

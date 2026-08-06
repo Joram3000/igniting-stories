@@ -3,6 +3,7 @@ import {notFound} from 'next/navigation'
 import {type PortableTextBlock} from 'next-sanity'
 import {Suspense} from 'react'
 
+import styles from '@/app/posts/[slug]/page.module.scss'
 import Avatar from '@/app/components/Avatar'
 import {MorePosts} from '@/app/components/Posts'
 import PortableText from '@/app/components/PortableText'
@@ -66,46 +67,39 @@ export default async function PostPage(props: PageProps<'/posts/[slug]'>) {
 
   return (
     <>
-      <div className="">
-        <div className="container my-12 lg:my-24 grid gap-12">
-          <div>
-            <div className="pb-6 grid gap-6 mb-6 border-b border-gray-100">
-              <div className="max-w-3xl flex flex-col gap-6">
-                <h1 className="text-4xl text-gray-900 sm:text-5xl lg:text-7xl">{post.title}</h1>
-              </div>
-              <div className="max-w-3xl flex gap-4 items-center">
-                {post.author && post.author.firstName && post.author.lastName && (
-                  <Avatar person={post.author} date={post.date} />
-                )}
-              </div>
+      <div className={`container ${styles.top}`}>
+        <div>
+          <div className={styles.head}>
+            <div className={styles.title}>
+              <h1>{post.title}</h1>
             </div>
-            <article className="gap-6 grid max-w-4xl">
-              <div className="">
-                {post?.coverImage && (
-                  <Image
-                    id={post.coverImage.asset?._ref || ''}
-                    alt={post.coverImage.alt || ''}
-                    className="rounded-sm w-full"
-                    width={1024}
-                    height={538}
-                    mode="cover"
-                    hotspot={post.coverImage.hotspot}
-                    crop={post.coverImage.crop}
-                  />
-                )}
-              </div>
-              {post.content?.length && (
-                <PortableText
-                  className="max-w-2xl prose-headings:font-medium prose-headings:tracking-tight"
-                  value={post.content as PortableTextBlock[]}
-                />
+            <div className={styles.meta}>
+              {post.author && post.author.firstName && post.author.lastName && (
+                <Avatar person={post.author} date={post.date} />
               )}
-            </article>
+            </div>
           </div>
+          <article className={styles.article}>
+            {post?.coverImage && (
+              <Image
+                id={post.coverImage.asset?._ref || ''}
+                alt={post.coverImage.alt || ''}
+                className={styles.cover}
+                width={1024}
+                height={538}
+                mode="cover"
+                hotspot={post.coverImage.hotspot}
+                crop={post.coverImage.crop}
+              />
+            )}
+            {post.content?.length && (
+              <PortableText value={post.content as PortableTextBlock[]} />
+            )}
+          </article>
         </div>
       </div>
-      <div className="border-t border-gray-100 bg-gray-50">
-        <div className="container py-12 lg:py-24 grid gap-12">
+      <div className={styles.more}>
+        <div className={`container ${styles.moreInner}`}>
           <aside>
             <Suspense>
               <MorePosts skip={post._id} limit={2} />

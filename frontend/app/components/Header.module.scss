@@ -1,0 +1,51 @@
+@use '../styles/tokens' as *;
+
+.header {
+  @include container;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: block;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.link {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+  color: $creme;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    color: $oranje;
+    border-color: $oranje;
+  }
+}
+
+.linkActief {
+  composes: link;
+  color: $oranje;
+  border-color: $oranje;
+}

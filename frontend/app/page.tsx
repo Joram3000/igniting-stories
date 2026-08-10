@@ -8,7 +8,8 @@ import Onboarding from '@/app/components/Onboarding'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allPostsQuery, homePageQuery} from '@/sanity/lib/queries'
 import {AllPostsQueryResult} from '@/sanity.types'
-
+import doodle_streep_oranje from '@/app/assets/svg/doodle streep oranje.svg'
+import doodle_krul_oranje from '@/app/assets/svg/doodle krul oranje.svg'
 const defaults = {
   heroHeading: 'Igniting\nStories',
   heroKicker: 'Maak je verhaal aanstekelijk.',
@@ -53,7 +54,9 @@ export default async function Page() {
   const recentPosts = (posts as AllPostsQueryResult) ?? []
   const featuredPosts = recentPosts.slice(0, 3)
   const watIkDoeItems =
-    home?.watIkDoeItems && home.watIkDoeItems.length > 0 ? home.watIkDoeItems : defaults.watIkDoeItems
+    home?.watIkDoeItems && home.watIkDoeItems.length > 0
+      ? home.watIkDoeItems
+      : defaults.watIkDoeItems
 
   return (
     <>
@@ -61,20 +64,6 @@ export default async function Page() {
       <section className={`${styles.section} ${styles.hero}`}>
         <div className={`container ${styles.tweeKolom}`}>
           <div>
-            <svg
-              className={styles.doodle}
-              viewBox="0 0 260 60"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M2 40 C 50 5, 90 5, 120 30 S 170 55, 195 35 S 230 10, 258 22"
-                stroke="#FC9F57"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </svg>
             <h1 className={styles.titel}>
               {(home?.heroHeading || defaults.heroHeading).split('\n').map((line, i, arr) => (
                 <Fragment key={line}>
@@ -115,24 +104,12 @@ export default async function Page() {
         </div>
       </section>
 
+      <NextImage src={doodle_streep_oranje} alt="" className={styles.doodle} />
+
       {/* Angela */}
       <section className={styles.section}>
         <div className={`container ${styles.angelaGrid}`}>
           <div className={styles.angelaKop}>
-            <svg
-              className={styles.doodle}
-              viewBox="0 0 260 60"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M2 30 C 30 60, 60 55, 80 30 S 110 2, 135 22 S 175 55, 205 40 S 245 15, 258 25"
-                stroke="#368F8B"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </svg>
             <h2>{home?.angelaHeading || defaults.angelaHeading}</h2>
             <p className={styles.subtitel}>{home?.angelaSubheading || defaults.angelaSubheading}</p>
           </div>
@@ -155,6 +132,8 @@ export default async function Page() {
 
       {/* What I do */}
       <section className={`${styles.section} ${styles.bandGroen}`}>
+        <NextImage src={doodle_krul_oranje} alt="" className={styles.doodle2} />
+
         <div className={`container ${styles.tweeKolom}`}>
           <div className={styles.kaderCreme}>
             <NextImage

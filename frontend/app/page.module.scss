@@ -9,9 +9,26 @@
 }
 
 .doodle {
-  width: 200px;
+  position: absolute;
+  z-index: -1;
+  max-width: 80%;
+  width: 800px;
+  left: 0%;
+  translate: -0% -40%;
+  height: auto;
   display: block;
-  margin-bottom: 2rem;
+}
+
+.doodle2 {
+  position: absolute;
+  z-index: 0;
+  max-width: 80%;
+  width: 800px;
+  right: 0%;
+  bottom: 0%;
+  translate: 28% -4%;
+  height: auto;
+  display: block;
 }
 
 // Hero
@@ -95,6 +112,7 @@
 
 .angelaKop {
   grid-area: kop;
+  padding-top: 48px;
 }
 
 .angelaFoto {
@@ -106,7 +124,7 @@
 }
 
 .subtitel {
-  color: $groen;
+  color: $creme;
   font-size: 1.25rem;
   margin-top: 0.25rem;
 }
@@ -133,6 +151,8 @@
 
 // What I do
 .bandGroen {
+  position: relative;
+  overflow: hidden;
   background: $groen;
   color: $creme;
 
@@ -154,11 +174,12 @@
 }
 
 .widGrid {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px 40px;
   margin-top: 2rem;
-
+  z-index: 3;
   @include mobile {
     grid-template-columns: 1fr;
   }

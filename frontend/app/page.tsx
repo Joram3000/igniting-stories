@@ -10,41 +10,6 @@ import {allPostsQuery, homePageQuery} from '@/sanity/lib/queries'
 import {AllPostsQueryResult} from '@/sanity.types'
 import doodle_streep_oranje from '@/app/assets/svg/doodle streep oranje.svg'
 import doodle_krul_oranje from '@/app/assets/svg/doodle krul oranje.svg'
-const defaults = {
-  heroHeading: 'Igniting\nStories',
-  heroKicker: 'Maak je verhaal aanstekelijk.',
-  heroPrimaryButtonText: 'Bekijk verhalen',
-  heroSecondaryButtonText: 'Neem contact op',
-  angelaHeading: 'Angela Poll',
-  angelaSubheading: 'Verhalenvanger',
-  angelaText:
-    'Jouw verhaal is er al. Het zit in hoe je kijkt, wat je maakt en waarom je doet wat je doet. Met camera, pen en een nieuwsgierige blik leg ik dat vast in beeld en tekst. Ik maak het niet mooier dan het is; ik laat de vonk overslaan.',
-  angelaButtonText: 'Meer over mij',
-  watIkDoeHeading: 'Van vonk naar vlam',
-  watIkDoeSubheading: 'Hiermee steek ik jouw verhaal aan',
-  watIkDoeItems: [
-    {
-      title: 'Verhalende content',
-      description:
-        'interviews, video, tekst, fotografie en social posts. Echte mensen en echte verhalen, want dat is wat mensen onthouden.',
-    },
-    {
-      title: 'Branding',
-      description:
-        'jouw visie vertaald naar (website)teksten, blogs en beeld, zodat je hele website één verhaal vertelt. Ook webdesign (UX & UI) en webdevelopment zijn mogelijk.',
-    },
-    {
-      title: 'Contentstrategie en begeleiding',
-      description:
-        'eerst bepalen welk verhaal je vertelt, aan wie en waarom. Daarna maak ik de content zelf, of stuur ik jouw team van contentmakers aan zodat het verhaal overal doorklinkt.',
-    },
-  ],
-  storiesHeading: 'Stories',
-  ctaHeading: 'Ken jij een smeulend verhaal?',
-  ctaText:
-    'Vertel me jouw verhaal. Samen kijken we naar hoe die vonk in jouw verhaal kan overslaan. Ken je iemand anders wiens verhaal verteld moet worden? Tip me!',
-  ctaButtonText: 'Neem contact op',
-}
 
 export default async function Page() {
   const [{data: posts}, {data: home}] = await Promise.all([
@@ -53,10 +18,7 @@ export default async function Page() {
   ])
   const recentPosts = (posts as AllPostsQueryResult) ?? []
   const featuredPosts = recentPosts.slice(0, 3)
-  const watIkDoeItems =
-    home?.watIkDoeItems && home.watIkDoeItems.length > 0
-      ? home.watIkDoeItems
-      : defaults.watIkDoeItems
+  const watIkDoeItems = home?.watIkDoeItems ?? []
 
   return (
     <>
@@ -65,26 +27,28 @@ export default async function Page() {
         <div className={`container ${styles.tweeKolom}`}>
           <div>
             <h1 className={styles.titel}>
-              {(home?.heroHeading || defaults.heroHeading).split('\n').map((line, i, arr) => (
+              {(home?.heroHeading ?? '').split('\n').map((line, i, arr) => (
                 <Fragment key={line}>
                   {line}
                   {i < arr.length - 1 && <br />}
                 </Fragment>
               ))}
             </h1>
-            <p className={styles.kicker}>{home?.heroKicker || defaults.heroKicker}</p>
+            <p className={styles.kicker}>{home?.heroKicker}</p>
             <div className={styles.knoppen}>
               <Link href="/verhalen" className={styles.knopOranje}>
-                {home?.heroPrimaryButtonText || defaults.heroPrimaryButtonText}
+                {home?.heroPrimaryButtonText}
               </Link>
               <Link href="/contact" className={styles.knopGroen}>
-                {home?.heroSecondaryButtonText || defaults.heroSecondaryButtonText}
+                {home?.heroSecondaryButtonText}
               </Link>
             </div>
           </div>
 
           <div className={styles.heroCollage}>
-            <div className={styles.fotoGroot}>
+            <div>videotje here i want to have the bumper-square-igniting-stories.webm video</div>
+
+            {/* <div className={styles.fotoGroot}>
               <NextImage
                 src="/images/vrouw.jpg"
                 alt="Portret van een lachende vrouw"
@@ -99,7 +63,7 @@ export default async function Page() {
                 width={468}
                 height={268}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -110,8 +74,8 @@ export default async function Page() {
       <section className={styles.section}>
         <div className={`container ${styles.angelaGrid}`}>
           <div className={styles.angelaKop}>
-            <h2>{home?.angelaHeading || defaults.angelaHeading}</h2>
-            <p className={styles.subtitel}>{home?.angelaSubheading || defaults.angelaSubheading}</p>
+            <h2>{home?.angelaHeading}</h2>
+            <p className={styles.subtitel}>{home?.angelaSubheading}</p>
           </div>
           <div className={`${styles.kaderCreme} ${styles.angelaFoto}`}>
             <NextImage
@@ -122,9 +86,9 @@ export default async function Page() {
             />
           </div>
           <div className={styles.angelaTekst}>
-            <p className={styles.tekst}>{home?.angelaText || defaults.angelaText}</p>
+            <p className={styles.tekst}>{home?.angelaText}</p>
             <Link href="/over-mij" className={styles.knopOutline}>
-              {home?.angelaButtonText || defaults.angelaButtonText}
+              {home?.angelaButtonText}
             </Link>
           </div>
         </div>
@@ -144,10 +108,8 @@ export default async function Page() {
             />
           </div>
           <div>
-            <h2 className={styles.kopPaars}>{home?.watIkDoeHeading || defaults.watIkDoeHeading}</h2>
-            <h3 className={styles.subtitel2}>
-              {home?.watIkDoeSubheading || defaults.watIkDoeSubheading}
-            </h3>
+            <h2 className={styles.kopPaars}>{home?.watIkDoeHeading}</h2>
+            <h3 className={styles.subtitel2}>{home?.watIkDoeSubheading}</h3>
             <div className={styles.widGrid}>
               {watIkDoeItems.map((item, i) => (
                 <div key={item.title} className={styles.widItem}>
@@ -166,7 +128,7 @@ export default async function Page() {
       <section className={styles.section}>
         <div className="container">
           <div className={styles.sectieKop}>
-            <h2>{home?.storiesHeading || defaults.storiesHeading}</h2>
+            <h2>{home?.storiesHeading}</h2>
           </div>
           {featuredPosts.length > 0 ? (
             <div className="verhalen-grid">
@@ -184,10 +146,10 @@ export default async function Page() {
       <section className={styles.section}>
         <div className="container">
           <div className={styles.cta}>
-            <h2>{home?.ctaHeading || defaults.ctaHeading}</h2>
-            <p className={styles.ctaTekst}>{home?.ctaText || defaults.ctaText}</p>
+            <h2>{home?.ctaHeading}</h2>
+            <p className={styles.ctaTekst}>{home?.ctaText}</p>
             <Link href="/contact" className={styles.knopOranje}>
-              {home?.ctaButtonText || defaults.ctaButtonText}
+              {home?.ctaButtonText}
             </Link>
           </div>
         </div>

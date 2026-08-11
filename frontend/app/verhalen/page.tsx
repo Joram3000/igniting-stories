@@ -6,20 +6,12 @@ import VerhaalCard from '@/app/components/VerhaalCard'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allPostsQuery, verhalenPageQuery} from '@/sanity/lib/queries'
 
-const defaults = {
-  heading: 'Verhalen',
-  intro: 'Interviews met mensen die een vuurtje aanwakkeren. In tekst en beeld.',
-  metaTitle: 'Verhalen',
-  metaDescription:
-    'Interviews met mensen die zich op een inspirerende manier inzetten om het leven mooier te maken.',
-}
-
 export async function generateMetadata(): Promise<Metadata> {
   const {data: page} = await sanityFetch({query: verhalenPageQuery, stega: false})
 
   return {
-    title: page?.metaTitle || defaults.metaTitle,
-    description: page?.metaDescription || defaults.metaDescription,
+    title: page?.metaTitle,
+    description: page?.metaDescription,
   }
 }
 
@@ -33,8 +25,8 @@ export default async function VerhalenPage() {
     <section className={styles.section}>
       <div className="container">
         <div className={styles.sectieKop}>
-          <h1>{page?.heading || defaults.heading}</h1>
-          <p>{page?.intro || defaults.intro}</p>
+          <h1>{page?.heading}</h1>
+          <p>{page?.intro}</p>
         </div>
         {posts && posts.length > 0 ? (
           <div className="verhalen-grid">

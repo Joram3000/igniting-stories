@@ -15,6 +15,16 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: ../sanity.schema.json
+export type Vimeo = {
+  _type: 'vimeo'
+  url: string
+}
+
+export type Youtube = {
+  _type: 'youtube'
+  url: string
+}
+
 export type PageReference = {
   _ref: string
   _type: 'reference'
@@ -119,6 +129,12 @@ export type BlockContent = Array<
       _type: 'image'
       _key: string
     }
+  | ({
+      _key: string
+    } & Youtube)
+  | ({
+      _key: string
+    } & Vimeo)
 >
 
 export type Button = {
@@ -563,6 +579,8 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Vimeo
+  | Youtube
   | PageReference
   | PostReference
   | Link

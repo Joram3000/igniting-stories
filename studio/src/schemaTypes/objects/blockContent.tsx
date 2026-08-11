@@ -102,5 +102,11 @@ export const blockContent = defineType({
         hotspot: true,
       },
     }),
+    defineArrayMember({
+      type: 'youtube',
+    }),
+    defineArrayMember({
+      type: 'vimeo',
+    }),
   ],
 })

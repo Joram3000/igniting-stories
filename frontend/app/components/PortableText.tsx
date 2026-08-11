@@ -12,6 +12,8 @@ import {PortableText, type PortableTextComponents, type PortableTextBlock} from 
 import styles from '@/app/components/PortableText.module.scss'
 import ResolvedLink from '@/app/components/ResolvedLink'
 import Image from '@/app/components/SanityImage'
+import YoutubeEmbed from '@/app/components/YoutubeEmbed'
+import VimeoEmbed from '@/app/components/VimeoEmbed'
 
 export default function CustomPortableText({
   className,
@@ -40,6 +42,8 @@ export default function CustomPortableText({
           </figure>
         )
       },
+      youtube: ({value}) => <YoutubeEmbed value={value} />,
+      vimeo: ({value}) => <VimeoEmbed value={value} />,
     },
     block: {
       h1: ({children, value}) => (

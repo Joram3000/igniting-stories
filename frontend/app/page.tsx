@@ -46,7 +46,16 @@ export default async function Page() {
           </div>
 
           <div className={styles.heroCollage}>
-            <div>videotje here i want to have the bumper-square-igniting-stories.webm video</div>
+            <div className={styles.fotoGroot}>
+              <video
+                src="/video/bumper-square-igniting-stories.webm"
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-label="Igniting Stories bumper video"
+              />
+            </div>
 
             {/* <div className={styles.fotoGroot}>
               <NextImage
